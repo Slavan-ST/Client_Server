@@ -103,7 +103,6 @@ namespace ConsoleApp
                                 if (user != null)
                                 {
                                     reply = "Информация из базы:" + Environment.NewLine + "@" + user.Name + " @" + user.LVL + " @" + user.Discount + " @" + user.Id + " @";
-                                    Console.WriteLine(arr[1]);
                                 }
                                 else
                                 {

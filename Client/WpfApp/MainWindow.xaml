@@ -11,7 +11,7 @@
             <StackPanel Name="mainStackPanel">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="ID: " Margin="7"/>
-                    <TextBox Name="tb1" Margin="5" Width="175"/>
+                    <TextBox Name="tb1" Margin="5" Width="175" PreviewTextInput ="Tb1_PreviewTextInput" KeyUp="Tb_KeyUp" KeyDown="Tb_KeyUp"/>
                     <Button Click="Button_Click" MinHeight="25" Content="Запрос к базе" Margin="5"/>
                 </StackPanel>
                 <TextBox Name="tb" Margin="5" MinHeight="30"/>
@@ -36,7 +36,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <TextBlock Text="Аватар:" Margin="5"/>
-                        <Image Width="100" Margin="5" Height="100" Name="image_avatar_user"/>
+                        <Image Width="240" Margin="5" Height="180" Name="image_avatar_user"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -54,15 +54,15 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="LVL:" Margin="5"/>
-                    <TextBox Name="tb_new_user_lvl" Width="200" Margin="5" Text="0" IsEnabled="False"/>
+                    <TextBox Name="tb_new_user_lvl" Width="200" Margin="5" Text="0"     PreviewTextInput ="Tb1_PreviewTextInput" KeyUp="Tb_KeyUp" KeyDown="Tb_KeyUp"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="Скидка:" Margin="5"/>
-                    <TextBox Name="tb_new_user_discount" Width="200" Margin="5"/>
+                    <TextBox Name="tb_new_user_discount" Width="200" Margin="5" Text="0"    PreviewTextInput ="Tb1_PreviewTextInput" KeyUp="Tb_KeyUp" KeyDown="Tb_KeyUp"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <TextBlock Text="Аватар:" Margin="5"/>
-                    <Image Width="100" Margin="5" Height="100" Name="image_avatar_new_user"/>
+                    <Image Width="240" Margin="5" Height="180" Name="image_avatar_new_user"/>
                 </StackPanel>
                 <Button Content="Добавить Аватар" Margin="5" Name="addUserAvatar" Click="addUserAvatar_Click"/>
                 

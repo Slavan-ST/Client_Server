@@ -28,9 +28,6 @@ namespace WpfApp
         public MainWindow()
         {
             InitializeComponent();
-            tb1.PreviewTextInput += Tb1_PreviewTextInput; ;
-            tb1.KeyUp += Tb_KeyUp;
-            tb1.KeyDown += Tb_KeyUp;
             tb_user_name.TextChanged += Tb_TextChanged;
         }
 
@@ -79,7 +76,6 @@ namespace WpfApp
             // Соединяем сокет с удаленной точкой
             sender.Connect(ipEndPoint);
 
-
             byte[] msg = Encoding.UTF8.GetBytes(message);
 
             // Отправляем данные через сокет
@@ -88,18 +84,12 @@ namespace WpfApp
             // Получаем ответ от сервера
             int bytesRec = sender.Receive(bytes);
 
-
-
-
             string otvet = Encoding.UTF8.GetString(bytes, 0, bytesRec);
             tb.Text = otvet;
             if (otvet == "Image")
             {
                 int bytesSent2 = sender.Send(user.Avatar);
             }
-
-
-
             // Освобождаем сокет
             sender.Shutdown(SocketShutdown.Both);
             sender.Close();
@@ -113,12 +103,8 @@ namespace WpfApp
                 user = SendMessageFromSocket(user.Id.ToString());
                 if (user != null)
                 {
-                    MessageBox.Show("1");
                     SendMessageFromSocketGetImage(user);
                     image_avatar_user.Source = user.AvatarImage;
-                }
-                else
-                {
                 }
             }
             catch (Exception ex)
@@ -130,8 +116,6 @@ namespace WpfApp
                 Console.ReadLine();
             }
         }
-
-
         public void AddOrNot(bool otvet)
         {
             if (otvet)
@@ -168,8 +152,6 @@ namespace WpfApp
             }
         }
 
-
-
         User SendMessageFromSocket(string message, int port = 11000)
         {
             // Буфер для входящих данных
@@ -186,9 +168,6 @@ namespace WpfApp
 
             // Соединяем сокет с удаленной точкой
             sender.Connect(ipEndPoint);
-
-
-
 
             byte[] msg = Encoding.UTF8.GetBytes("GETUSERID;" + message);
 
