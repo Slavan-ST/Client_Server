@@ -1,0 +1,113 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Sockets;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace WpfApp
+{
+    /// <summary>
+    /// Логика взаимодействия для MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public string text { get; set; }
+        public string text2 { get; set; }
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+
+        void SendMessageFromSocket(string message_text, int port = 11000)
+        {
+            string message = message_text;
+            // Буфер для входящих данных
+            byte[] bytes = new byte[1024];
+
+            // Соединяемся с удаленным устройством
+
+            // Устанавливаем удаленную точку для сокета
+            IPHostEntry ipHost = Dns.GetHostEntry("localhost");
+            IPAddress ipAddr = ipHost.AddressList[0];
+            IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, port);
+
+            Socket sender = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+
+            // Соединяем сокет с удаленной точкой
+            sender.Connect(ipEndPoint);
+
+
+            Console.WriteLine("Сокет соединяется с {0} ", sender.RemoteEndPoint.ToString());
+            byte[] msg = Encoding.UTF8.GetBytes(message);
+
+            // Отправляем данные через сокет
+            int bytesSent = sender.Send(msg);
+
+            // Получаем ответ от сервера
+            int bytesRec = sender.Receive(bytes);
+
+
+
+            string otvet = Encoding.UTF8.GetString(bytes, 0, bytesRec);
+            tb.Text = otvet;
+
+
+
+            // Освобождаем сокет
+            sender.Shutdown(SocketShutdown.Both);
+            sender.Close();
+
+
+            if (otvet == "not found")
+            {
+                (new WindowVerifi(this)).ShowDialog();
+            }
+        }
+
+        
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SendMessageFromSocket(tb.Text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+		public void AddOrNot(bool otvet)
+		{
+			if (otvet)
+			{
+				newUserStackPanel.Visibility = Visibility.Visible;
+			}
+		}
+
+		private void addUser_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SendMessageFromSocket("NEW USER;" + tb_new_user_name.Text);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+    }
+}
