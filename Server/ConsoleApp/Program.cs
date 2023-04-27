@@ -51,14 +51,13 @@ namespace ConsoleApp
                     // Мы дождались клиента, пытающегося с нами соединиться
 
                     byte[] bytes = new byte[1024];
-                    byte[] bytes2 = new byte[262144];
+                    byte[] bytesForImage = new byte[262144];
 
                     int bytesRec = handler.Receive(bytes);
 
 
                     data += Encoding.UTF8.GetString(bytes, 0, bytesRec);
 
-                    int idClient = -2;
 
                     // Отправляем ответ клиенту\
 
@@ -66,46 +65,45 @@ namespace ConsoleApp
                     string reply = "";
                     if (data.Contains("NEW USER;"))
                     {
+                        Console.WriteLine("NEW User");
                         string[] arr = data.Split(';');
                         User user = new User() { Id = int.Parse(arr[2]), Name = arr[1], Discount = int.Parse(arr[3]), LVL = int.Parse(arr[4]) };
                         Connect.WriteInDb(user);
 
 
                         handler.Send(Encoding.UTF8.GetBytes("Image"));
-                        handler.Receive(bytes2);
-                        user.Avatar = bytes2;
+                        handler.Receive(bytesForImage);
+                        user.Avatar = bytesForImage;
 
                         Connect.UpdateInDb(user);
 
                         reply = "success";
 
                     }
-
-
-                    else if (data.Contains("GETIMAGE;"))
+                    if (data.Contains("GETIMAGE"))
                     {
                         try
                         {
-                            int bytesRec2 = handler.Receive(bytes2);
-                            data += Encoding.UTF8.GetString(bytes2, 0, bytesRec2);
-                            if (data == "GETIMAGE")
-                                handler.Send(currentUser.Avatar);
-
+                            Console.WriteLine("Get image");
+                            handler.Send(currentUser.Avatar);
                         }
                         catch { }
                     }
-                    else
+                    if (data.Contains("GETUSERID;"))
                     {
+                        Console.WriteLine("Get user id");
                         try
                         {
                             try
                             {
+                                string[] arr = data.Split(';');
                                 Connect.connect();
-                                User user = Connect.ReadFromDB(data);
+                                User user = Connect.ReadFromDB(arr[1]);
                                 currentUser = user;
                                 if (user != null)
                                 {
                                     reply = "Информация из базы:" + Environment.NewLine + "@" + user.Name + " @" + user.LVL + " @" + user.Discount + " @" + user.Id + " @";
+                                    Console.WriteLine(arr[1]);
                                 }
                                 else
                                 {
@@ -119,7 +117,7 @@ namespace ConsoleApp
                         }
                         catch
                         {
-                            reply = "неверный формат данных!";
+                            reply = "not found";
                         }
                     }
 
@@ -127,9 +125,10 @@ namespace ConsoleApp
 
 
                     byte[] msg = Encoding.UTF8.GetBytes(reply);
-                    handler.Send(msg);
-
-
+                    if (!data.Contains("GETIMAGE"))
+                    {
+                        handler.Send(msg);
+                    }
 
                     if (data.IndexOf("<TheEnd>") > -1)
                     {
@@ -141,9 +140,6 @@ namespace ConsoleApp
                     handler.Close();
 
                 }
-
-
-
             }
             catch (Exception ex)
             {

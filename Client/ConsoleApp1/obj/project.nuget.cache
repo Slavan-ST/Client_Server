@@ -1,16 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ielZtrvWfgCT/mKmisN+ZAB57AWqMBWarqit0GG+QqRrBBm0HxMjwD2BM5wUqqRmZeFb3NdBs5mT/Ce0x+T3vg==",
+  "dgSpecHash": "inLEWjS72UecpaG4+neuHsLHaNEYuhYMOXODafLqCFgCVbtFdkNeSaQEQ9kf+O9vAjKx9MiwYDQu/tD0Cuq8YQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\slava\\Desktop\\client-server\\Client\\ConsoleApp1\\ConsoleApp1.csproj",
+  "projectFilePath": "C:\\Users\\Expert\\Downloads\\Client_Server-master\\Client\\ConsoleApp1\\ConsoleApp1.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\slava\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
-    "C:\\Users\\slava\\.nuget\\packages\\npgsql\\7.0.2\\npgsql.7.0.2.nupkg.sha512",
-    "C:\\Users\\slava\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "C:\\Users\\slava\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.15\\microsoft.windowsdesktop.app.ref.6.0.15.nupkg.sha512",
-    "C:\\Users\\slava\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.15\\microsoft.netcore.app.ref.6.0.15.nupkg.sha512",
-    "C:\\Users\\slava\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.15\\microsoft.aspnetcore.app.ref.6.0.15.nupkg.sha512",
-    "C:\\Users\\slava\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.15\\microsoft.netcore.app.host.win-x64.6.0.15.nupkg.sha512"
+    "C:\\Users\\Expert\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Expert\\.nuget\\packages\\npgsql\\7.0.2\\npgsql.7.0.2.nupkg.sha512",
+    "C:\\Users\\Expert\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

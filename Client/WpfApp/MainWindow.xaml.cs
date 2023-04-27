@@ -110,15 +110,15 @@ namespace WpfApp
             User user = new User() { Id = int.Parse(tb1.Text) };
             try
             {
-                if(tb1.Text.Length > 0)
+                user = SendMessageFromSocket(user.Id.ToString());
+                if (user != null)
                 {
-                    user = SendMessageFromSocket(user.Id.ToString());
-                    SendMessageFromSocket(user);
+                    MessageBox.Show("1");
+                    SendMessageFromSocketGetImage(user);
                     image_avatar_user.Source = user.AvatarImage;
                 }
                 else
                 {
-                    MessageBox.Show("ExtensionNull");
                 }
             }
             catch (Exception ex)
@@ -190,7 +190,7 @@ namespace WpfApp
 
 
 
-            byte[] msg = Encoding.UTF8.GetBytes(message);
+            byte[] msg = Encoding.UTF8.GetBytes("GETUSERID;" + message);
 
             // Отправляем данные через сокет
             int bytesSent = sender.Send(msg);
@@ -204,35 +204,45 @@ namespace WpfApp
             tb.Text = otvet;
 
 
+            User user = new User();
 
-            string[] userInLine = otvet.Split('@');
-            User user = new User()
+            if (otvet != "not found")
             {
-                NickName = userInLine[1]
-            };
-            try
-            {
-                user.LVL = int.Parse(userInLine[2]);
-            }
-            catch {
-                user.LVL = 0;
-            }
-            try
-            {
-                user.Id = int.Parse(userInLine[4]);
-            }
-            catch { user.Id = 0; }
-            try
-            {
-                user.Discount = int.Parse(userInLine[3]);
-            }
-            catch { user.Discount = 0; }
+                string[] userInLine = otvet.Split('@');
+                try
+                {
+                    user.NickName = userInLine[1];
+                }
+                catch { }
+                try
+                {
+                    user.LVL = int.Parse(userInLine[2]);
+                }
+                catch
+                {
+                    user.LVL = 0;
+                }
+                try
+                {
+                    user.Id = int.Parse(userInLine[4]);
+                }
+                catch { user.Id = 0; }
+                try
+                {
+                    user.Discount = int.Parse(userInLine[3]);
+                }
+                catch { user.Discount = 0; }
 
-            tb_user_discount.Text = user.Discount.ToString();
-            tb_user_id .Text = user.Id.ToString();
-            tb_user_name.Text = user.NickName;
-            tb_user_lvl.Text = user.LVL.ToString();
+                tb_user_discount.Text = user.Discount.ToString();
+                tb_user_id.Text = user.Id.ToString();
+                tb_user_name.Text = user.NickName;
+                tb_user_lvl.Text = user.LVL.ToString();
 
+            }
+            else
+            {
+                user = null;
+            }
 
             // Освобождаем сокет
             sender.Shutdown(SocketShutdown.Both);
@@ -244,9 +254,7 @@ namespace WpfApp
         void SendMessageFromSocketGetImage(User user,int port = 11000)
         {
             // Буфер для входящих данных
-            byte[] bytes = new byte[1024];
-
-            // Соединяемся с удаленным устройством
+            byte[] bytes = new byte[262144];
 
             // Устанавливаем удаленную точку для сокета
             IPHostEntry ipHost = Dns.GetHostEntry("localhost");
@@ -258,38 +266,20 @@ namespace WpfApp
             // Соединяем сокет с удаленной точкой
             sender.Connect(ipEndPoint);
 
-
-
-
-            byte[] msg = Encoding.UTF8.GetBytes("GETIMAGE");
-
             // Отправляем данные через сокет
+            byte[] msg = Encoding.UTF8.GetBytes("GETIMAGE");
             int bytesSent = sender.Send(msg);
 
             // Получаем ответ от сервера
-
-
             int bytesRec = sender.Receive(bytes);
             user.Avatar = bytes;
             
-
-
-
-
             // Освобождаем сокет
             sender.Shutdown(SocketShutdown.Both);
             sender.Close();
 
 
         }
-        /*
-            int bytesSent2 = sender.Send(Encoding.UTF8.GetBytes("GETIMAGE"));
-            byte[] bytes2 = new byte[1024];
-
-            sender.Receive(user.Avatar);
-            image_avatar_user.Source = user.AvatarImage;
-            
-         */
         private void addUserAvatar_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
