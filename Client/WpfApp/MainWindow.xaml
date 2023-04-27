@@ -36,7 +36,9 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <TextBlock Text="Аватар:" Margin="5"/>
-                        <Image Width="240" Margin="5" Height="180" Name="image_avatar_user"/>
+                        <Border BorderThickness="2" BorderBrush="Black">
+                            <Image Width="240" Margin="5" Height="180" Name="image_avatar_user"/>
+                        </Border>
                     </StackPanel>
                 </StackPanel>
 
@@ -62,11 +64,13 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <TextBlock Text="Аватар:" Margin="5"/>
-                    <Image Width="240" Margin="5" Height="180" Name="image_avatar_new_user"/>
+                    <Border BorderThickness="2" BorderBrush="Black">
+                        <Image Width="240" Margin="5" Height="180" Name="image_avatar_new_user"/>
+                    </Border>
                 </StackPanel>
                 <Button Content="Добавить Аватар" Margin="5" Name="addUserAvatar" Click="addUserAvatar_Click"/>
-                
                 <Button Content="Добавить" Margin="5" Name="addUser" Click="addUser_Click"/>
+                <Button Content="Отмена" Margin="5" Name="butCancel" Click="butCancel_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

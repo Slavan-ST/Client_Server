@@ -27,7 +27,7 @@ namespace WpfApp
                 AvatarImage.EndInit();
             }
         }
-        public byte[] _avatar = new byte[262144];
+        public byte[] _avatar = new byte[2621440];
 
         public BitmapImage AvatarImage { get; set; }
     }

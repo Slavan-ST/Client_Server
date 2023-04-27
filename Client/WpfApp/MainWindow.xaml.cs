@@ -100,7 +100,7 @@ namespace WpfApp
             User user = new User() { Id = int.Parse(tb1.Text) };
             try
             {
-                user = SendMessageFromSocket(user.Id.ToString());
+                user = SendMessageFromSocketGetUser(user.Id.ToString());
                 if (user != null)
                 {
                     SendMessageFromSocketGetImage(user);
@@ -122,9 +122,9 @@ namespace WpfApp
             {
                 string id = tb1.Text;
                 newUserStackPanel.Visibility = Visibility.Visible;
+                mainStackPanel.Visibility = Visibility.Collapsed;
                 tb_new_user_id.Text = id;
                 tb_new_user_id.IsEnabled = false;
-                mainStackPanel.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -152,7 +152,7 @@ namespace WpfApp
             }
         }
 
-        User SendMessageFromSocket(string message, int port = 11000)
+        User SendMessageFromSocketGetUser(string message, int port = 11000)
         {
             // Буфер для входящих данных
             byte[] bytes = new byte[1024];
@@ -233,7 +233,7 @@ namespace WpfApp
         void SendMessageFromSocketGetImage(User user,int port = 11000)
         {
             // Буфер для входящих данных
-            byte[] bytes = new byte[262144];
+            byte[] bytes = new byte[2621440];
 
             // Устанавливаем удаленную точку для сокета
             IPHostEntry ipHost = Dns.GetHostEntry("localhost");
@@ -269,6 +269,12 @@ namespace WpfApp
 
                 userNewCurrent.Avatar = MyConverter.ConverterFromImage(userNewCurrent.AvatarImage);
             }
+        }
+
+        private void butCancel_Click(object sender, RoutedEventArgs e)
+        {
+            newUserStackPanel.Visibility = Visibility.Collapsed;
+            mainStackPanel.Visibility = Visibility.Visible;
         }
     }
 }

@@ -51,7 +51,7 @@ namespace ConsoleApp
                     // Мы дождались клиента, пытающегося с нами соединиться
 
                     byte[] bytes = new byte[1024];
-                    byte[] bytesForImage = new byte[262144];
+                    byte[] bytesForImage = new byte[2621440];
 
                     int bytesRec = handler.Receive(bytes);
 
@@ -69,7 +69,6 @@ namespace ConsoleApp
                         string[] arr = data.Split(';');
                         User user = new User() { Id = int.Parse(arr[2]), Name = arr[1], Discount = int.Parse(arr[3]), LVL = int.Parse(arr[4]) };
                         Connect.WriteInDb(user);
-
 
                         handler.Send(Encoding.UTF8.GetBytes("Image"));
                         handler.Receive(bytesForImage);
