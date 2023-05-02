@@ -14,7 +14,6 @@ namespace WpfApp
         public static byte[] ConverterFromImage(BitmapImage image)
         {
             MemoryStream memStream = new MemoryStream();
-            Stream stream = image.StreamSource;
             JpegBitmapEncoder encoder = new JpegBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(image));
             encoder.Save(memStream);

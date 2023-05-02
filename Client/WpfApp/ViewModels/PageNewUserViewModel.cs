@@ -15,13 +15,19 @@ namespace WpfApp.ViewModels
 {
     public class PageNewUserViewModel:BaseViewModel
     {
-        public int _id;
+        public PageNewUserViewModel(string Id)
+        {
+            this.Id = Id;
+            Avatar = new BitmapImage(new Uri("/Resources/no-image.png", UriKind.Relative));
+        }
+        public string _id;
         public string _userName;
         public int _lvl;
         public int _discount;
         public BitmapImage _avatar;
+        public bool _isEnableAddBtn;
 
-        public int Id
+        public string Id
         {
             get { return _id; }
             set
@@ -32,7 +38,17 @@ namespace WpfApp.ViewModels
         }
         public string UserName
         {
-            get { return _userName; }
+            get 
+            {
+                if (_userName != null)
+                {
+                    if (_userName != "")
+                    {
+                        IsEnableAddBtn = true;
+                    }
+                }
+                return _userName; 
+            }
             set
             {
                 _userName = value;
@@ -64,6 +80,18 @@ namespace WpfApp.ViewModels
             {
                 _avatar = value;
                 OnPropertyChanged(nameof(Avatar));
+            }
+        }
+        public bool IsEnableAddBtn
+        {
+            get
+            {
+                return _isEnableAddBtn;
+            }
+            set
+            {
+                _isEnableAddBtn = value;
+                OnPropertyChanged(nameof(IsEnableAddBtn));
             }
         }
 
@@ -101,8 +129,7 @@ namespace WpfApp.ViewModels
             {
                 if (_btnBackClick == null)
                 {
-                    _btnBackClick = new RelayCommand(
-                        param => this.BackClick());
+                    _btnBackClick = new RelayCommand(param => this.BackClick());
                 }
                 return _btnBackClick;
             }
@@ -114,24 +141,26 @@ namespace WpfApp.ViewModels
             System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                Avatar = new BitmapImage(new Uri(openFileDialog.FileName));
+                Avatar = new BitmapImage(new Uri("/Resources/no-image.png", UriKind.Relative));
+                //Avatar = new BitmapImage(new Uri(openFileDialog.FileName));
             }
         }
         public void AddNewUserClick()
         {
             User user = new User()
             {
-                Id = Id,
+                Id = int.Parse(Id),
                 NickName = UserName,
-                LVL = LVL,
-                Discount = Discount,
+                LVL = (LVL.ToString().Length > 0) ? LVL : 0,
+                Discount = (Discount.ToString().Length > 0) ? Discount : 0,
                 AvatarImage = Avatar
             };
-            WorkingWithServer.SendMessageNewUser(user);
+            WorkingWithServer.SendMessageNewUser(user);            
+            MainWindow.mw.NavigateFrame.GoBack();
         }
         public void BackClick()
         {
-
+            MainWindow.mw.NavigateFrame.GoBack();
         }
     }
 }

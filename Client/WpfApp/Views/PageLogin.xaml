@@ -16,7 +16,6 @@
                     PreviewTextInput ="PreviewTextInputInt32"/>
                 <Button Command ="{Binding Path=BtnSendClick}" Content="Запрос к базе"/>
             </StackPanel>
-            <TextBox Name="tb"  MinHeight="30"/>
 
             <StackPanel HorizontalAlignment="Center">
                 <TextBlock Text="Данные пользователя" TextAlignment="Center"/>
@@ -26,7 +25,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="id:"/>
-                    <TextBox Text="{Binding Path = Id, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Text="{Binding Path = Id, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <TextBlock Text="LVL:"/>

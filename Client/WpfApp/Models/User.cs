@@ -14,12 +14,14 @@ namespace WpfApp
         public int LVL { get; set; } = 0;
         public int Discount { get; set; } = 0;
 
-        public byte[] Avatar { 
+        public byte[] Avatar
+        {
             get
             {
                 return _avatar;
             }
-            set { 
+            set
+            {
                 _avatar = value;
                 AvatarImage = new BitmapImage();
                 AvatarImage.BeginInit();
@@ -28,7 +30,18 @@ namespace WpfApp
             }
         }
         public byte[] _avatar = new byte[2621440];
+        public BitmapImage _avatarImage;
 
-        public BitmapImage AvatarImage { get; set; }
+        public BitmapImage AvatarImage
+        {
+            get
+            {
+                return _avatarImage;
+            }
+            set
+            {
+                _avatarImage = value;
+            }
+        }
     }
 }

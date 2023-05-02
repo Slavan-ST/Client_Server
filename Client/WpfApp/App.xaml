@@ -19,5 +19,8 @@
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="5"/>
         </Style>
+        <Style TargetType="Frame">
+            <Setter Property="NavigationUIVisibility" Value="Hidden"/>
+        </Style>
     </Application.Resources>
 </Application>

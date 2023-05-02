@@ -6,6 +6,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace WpfApp.Models
 {
@@ -35,15 +37,16 @@ namespace WpfApp.Models
                 string message = "NEW USER;" + user.Id + ";" + user.NickName + ";" + user.Discount + ";" + user.LVL;
                 byte[] msg = Encoding.UTF8.GetBytes(message);
 
-
                 Socket sender = Start();
                 sender.Send(msg);                               // Отправляем данные через сокет
                 int bytesRec = sender.Receive(messageBytes);
                 string otvet = Encoding.UTF8.GetString(messageBytes, 0, bytesRec);
 
+
                 if (otvet == "IMAGE")
                 {
-                    sender.Send(user.Avatar);
+                    BitmapImage bitmap = user.AvatarImage;
+                    sender.Send(MyConverter.ConverterFromImage(bitmap));
                 }
                 Stop(sender);
             }

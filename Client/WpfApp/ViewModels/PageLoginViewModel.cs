@@ -96,7 +96,7 @@ namespace WpfApp.ViewModels
                 {
                     if (WindowVerifi.IsNewUser())
                     {
-                        MainWindow.mw.NavigateFrame.Navigate(new PageNewUser());
+                        MainWindow.mw.NavigateFrame.Navigate(new PageNewUser(Id));
                     }
                 }
             }

@@ -17,7 +17,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Text="id:"/>
-                <TextBox Text="{Binding Path=Id, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Text="{Binding Path=Id, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Text="LVL:"/>
@@ -34,7 +34,7 @@
                 </Border>
             </StackPanel>
             <Button Content="Добавить Аватар" Command="{Binding Path=BtnAddAvatarClick}"/>
-            <Button Content="Добавить"        Command="{Binding Path=BtnAddNewUserClick}"/>
+            <Button Content="Добавить"        Command="{Binding Path=BtnAddNewUserClick}" IsEnabled="{Binding IsEnableAddBtn}"/>
             <Button Content="Отмена"          Command="{Binding Path=BtnBackClick}"/>
         </StackPanel>
     </Grid>

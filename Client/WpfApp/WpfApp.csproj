@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,8 +62,6 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\MyValidation.cs" />
     <Compile Include="Models\WorkingWithServer.cs" />
-    <Compile Include="MyConverter.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\PageLoginViewModel.cs" />
     <Compile Include="ViewModels\PageNewUserViewModel.cs" />
@@ -126,6 +125,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\no-image.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -52,7 +52,7 @@ namespace ConsoleApp
 
                         handler.Send(Encoding.UTF8.GetBytes("IMAGE"));
                         handler.Receive(bytesForImage);
-                        
+
                         User user = new User()
                         {
                             Id = int.Parse(arr[1]),
@@ -74,6 +74,7 @@ namespace ConsoleApp
                             User user = Connect.ReadFromDB(arr[1]);
                             if (user != null)
                             {
+                                Console.WriteLine("USERFROMDB");
                                 currentUser = user;
                                 reply = "USERFROMDB:" + "@" +
                                     user.Id + " @" + 
@@ -88,13 +89,25 @@ namespace ConsoleApp
                                 {
                                     try
                                     {
-                                        Console.WriteLine(user.Avatar.ToString());
-                                        Console.WriteLine("Get image");
-                                        handler.Send(user.Avatar);
+                                        if (user.Avatar != null)
+                                        {
+                                            Console.WriteLine(user.Avatar.ToString());
+                                            Console.WriteLine("Get image");
+                                            handler.Send(user.Avatar);
+                                        }
+                                        else
+                                        {
+                                            handler.Send(Encoding.UTF8.GetBytes("not found"));
+                                        }
                                     }
                                     catch { }
                                 }
 
+                            }
+                            else
+                            {
+                                byte[] msg = Encoding.UTF8.GetBytes("NOT FOUND");
+                                handler.Send(msg);
                             }
                         }
                         catch 

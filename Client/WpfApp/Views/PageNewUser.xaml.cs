@@ -22,9 +22,9 @@ namespace WpfApp.Views
     /// </summary>
     public partial class PageNewUser : Page
     {
-        public PageNewUser()
+        public PageNewUser(string Id)
         {
-            DataContext = new PageNewUserViewModel();
+            DataContext = new PageNewUserViewModel(Id);
             InitializeComponent();
         }
         void PreviewTextInputInt32(object sender, TextCompositionEventArgs e)
