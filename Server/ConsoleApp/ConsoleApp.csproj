@@ -93,7 +93,6 @@
   <ItemGroup>
     <Compile Include="Connect.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="Program - Копировать.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

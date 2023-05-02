@@ -19,23 +19,28 @@ namespace WpfApp
     /// </summary>
     public partial class WindowVerifi : Window
     {
-        MainWindow mainWindow = null;   
-        public WindowVerifi(MainWindow window)
+        bool AddOrNot;
+        public WindowVerifi()
         {
             InitializeComponent();
-            this.mainWindow = window;
+        }
+        public static bool IsNewUser()
+        {
+            WindowVerifi window = new WindowVerifi();
+            window.ShowDialog();
+            return window.AddOrNot;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)//y
         {
-           mainWindow.AddOrNot(true);
             this.Close();
+            AddOrNot = true;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)//n
         {
-           mainWindow.AddOrNot(false);
             this.Close();
+            AddOrNot = false;
         }
     }
 }

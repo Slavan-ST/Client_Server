@@ -7,7 +7,7 @@ using System.Windows.Media.Imaging;
 
 namespace WpfApp
 {
-    public class User
+    public class User2
     {
         public int Id { get; set; } = 0;
         public string NickName { get; set; } = "null";

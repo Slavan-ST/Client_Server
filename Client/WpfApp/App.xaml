@@ -4,6 +4,20 @@
              xmlns:local="clr-namespace:WpfApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Page">
+            <Setter Property="Background" Value="AliceBlue"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Aqua"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
     </Application.Resources>
 </Application>

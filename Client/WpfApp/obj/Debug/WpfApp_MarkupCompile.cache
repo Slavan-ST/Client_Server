@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Expert\Downloads\Client_Server-master\Client\WpfApp\obj\Debug\
+C:\Users\slava\source\repos\Client_Server\Client\WpfApp\obj\Debug\
 WpfApp
 none
 false
 DEBUG;TRACE
-C:\Users\Expert\Downloads\Client_Server-master\Client\WpfApp\App.xaml
-2-1288335862
-1525245859
-81848743899
+C:\Users\slava\source\repos\Client_Server\Client\WpfApp\App.xaml
+41279192818
+
+18645747699
 14-2011955616
-MainWindow.xaml;WindowVerifi.xaml;
+MainWindow.xaml;Views\PageLogin.xaml;Views\PageNewUser.xaml;WindowVerifi.xaml;
 
 False
 

@@ -1,0 +1,41 @@
+﻿<Page x:Class="WpfApp.Views.PageNewUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageNewUser">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Новый пользователь" TextAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Никнейм:"/>
+                <TextBox Text="{Binding Path= UserName, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="id:"/>
+                <TextBox Text="{Binding Path=Id, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="LVL:"/>
+                <TextBox Text="{Binding Path=LVL, UpdateSourceTrigger=PropertyChanged}"  PreviewTextInput ="PreviewTextInputInt32"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Скидка:"/>
+                <TextBox Text="{Binding Path=Discount, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput ="PreviewTextInputInt32"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="Аватар:"/>
+                <Border BorderThickness="2" BorderBrush="Black">
+                    <Image Width="240" Margin="5" Height="180" Source="{Binding Path = Avatar, UpdateSourceTrigger=PropertyChanged}"/>
+                </Border>
+            </StackPanel>
+            <Button Content="Добавить Аватар" Command="{Binding Path=BtnAddAvatarClick}"/>
+            <Button Content="Добавить"        Command="{Binding Path=BtnAddNewUserClick}"/>
+            <Button Content="Отмена"          Command="{Binding Path=BtnBackClick}"/>
+        </StackPanel>
+    </Grid>
+</Page>

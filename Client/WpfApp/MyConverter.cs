@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace WpfApp
 {
-    public class MyConverter
+    public class MyConverter2
     {
         public static byte[] ConverterFromImage(BitmapImage image)
         {
