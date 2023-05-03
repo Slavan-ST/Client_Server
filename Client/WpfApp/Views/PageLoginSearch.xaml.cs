@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,24 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Text.RegularExpressions;
-using WpfApp.Views;
+using WpfApp.ViewModels;
 
-namespace WpfApp
+namespace WpfApp.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для PageLoginSearch.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PageLoginSearch : Page
     {
-        static public MainWindow mw;
-        public MainWindow()
+        public PageLoginSearch()
         {
             InitializeComponent();
-
-            NavigationService.GetNavigationService(NavigateFrame);
-            NavigateFrame.Navigate(new PageLoginSearch());
-            mw = this;
+            DataContext = new PageLoginSearchViewModel();
         }
     }
 }

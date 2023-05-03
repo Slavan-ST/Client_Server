@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\slava\source\repos\myREPO\Client\WpfApp\App.xaml
-41279192818
+5427776738
 
-16310913240
+181663957123
 151937372271
-MainWindow.xaml;Views\PageLogin.xaml;Views\PageNewUser.xaml;WindowVerifi.xaml;
+MainWindow.xaml;Views\PageLogin.xaml;Views\PageLoginSearch.xaml;Views\PageNewUser.xaml;WindowVerifi.xaml;
 
 False
 

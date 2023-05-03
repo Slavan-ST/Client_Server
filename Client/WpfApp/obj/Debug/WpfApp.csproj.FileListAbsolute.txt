@@ -120,3 +120,5 @@ C:\Users\slava\source\repos\myREPO\Client\WpfApp\obj\Debug\WpfApp.csproj.Generat
 C:\Users\slava\source\repos\myREPO\Client\WpfApp\obj\Debug\WpfApp.csproj.CoreCompileInputs.cache
 C:\Users\slava\source\repos\myREPO\Client\WpfApp\obj\Debug\WpfApp.exe
 C:\Users\slava\source\repos\myREPO\Client\WpfApp\obj\Debug\WpfApp.pdb
+C:\Users\slava\source\repos\myREPO\Client\WpfApp\obj\Debug\Views\PageLoginSearch.g.cs
+C:\Users\slava\source\repos\myREPO\Client\WpfApp\obj\Debug\Views\PageLoginSearch.baml

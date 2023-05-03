@@ -102,5 +102,33 @@ namespace WpfApp.Models
             }
             return (user, messageForClient);
         }
+        public static List<User> SendMessageGetUsersSearch(string columnName, string param, int maxCount = 10, int startIndex = 0)
+        {
+            List<User> users = new List<User>();
+            Socket sender = Start();
+            string message = "GETUSER@" + columnName + "@" + param + "@" + maxCount + "@" + startIndex;
+            byte[] messageByte = Encoding.UTF8.GetBytes(message);
+            sender.Send(messageByte);
+            int byteRec = sender.Receive(messageBytes);
+            string otvet = Encoding.UTF8.GetString(messageBytes, 0, byteRec);
+            if (otvet.ToLower() != "not found")
+            {
+                string[] arrUsers = otvet.Split('*');
+                for (int i = 0; i < arrUsers.Length - 1; i++)
+                {
+                    string[] arr = arrUsers[i].Split('@');
+                    User user = new User()
+                    {
+                        Id = int.Parse(arr[0].Trim()),
+                        NickName = arr[1],
+                        LVL = int.Parse(arr[2]),
+                        Discount = int.Parse(arr[3])
+                    };
+                    users.Add(user);
+                }
+            }
+            Stop(sender);
+            return users;
+        }
     }
 }

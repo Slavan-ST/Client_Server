@@ -63,10 +63,14 @@
     <Compile Include="Models\MyValidation.cs" />
     <Compile Include="Models\WorkingWithServer.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\PageLoginSearchViewModel.cs" />
     <Compile Include="ViewModels\PageLoginViewModel.cs" />
     <Compile Include="ViewModels\PageNewUserViewModel.cs" />
     <Compile Include="Views\PageLogin.xaml.cs">
       <DependentUpon>PageLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PageLoginSearch.xaml.cs">
+      <DependentUpon>PageLoginSearch.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PageNewUser.xaml.cs">
       <DependentUpon>PageNewUser.xaml</DependentUpon>
@@ -87,6 +91,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\PageLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PageLoginSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -64,24 +64,23 @@ namespace ConsoleApp
                         Connect.WriteInDb(user);
                         reply = "success";
                     }
-                    
+
                     if (data.Contains("GETUSERID;"))
                     {
-                        Console.WriteLine("Get user id");
+                        Console.WriteLine(data);
                         try
                         {
                             string[] arr = data.Split(';');
                             User user = Connect.ReadFromDB(arr[1]);
                             if (user != null)
                             {
-                                Console.WriteLine("USERFROMDB");
                                 currentUser = user;
                                 reply = "USERFROMDB:" + "@" +
-                                    user.Id + " @" + 
+                                    user.Id + " @" +
                                     user.Name + " @" +
-                                    user.LVL + " @" + 
+                                    user.LVL + " @" +
                                     user.Discount + " @";
-
+                                Console.WriteLine(reply);
                                 byte[] msg = Encoding.UTF8.GetBytes(reply);
                                 handler.Send(msg);
                                 bytesRec = handler.Receive(bytes);
@@ -110,11 +109,50 @@ namespace ConsoleApp
                                 handler.Send(msg);
                             }
                         }
-                        catch 
+                        catch
                         {
                             reply = "not found";
                         }
                     }
+                    if (data.Contains("GETUSER@"))
+                    {
+                        Console.WriteLine(data);
+                        try
+                        {
+                            string[] arr = data.Split('@');
+                            string columnName = arr[1];
+                            string param = arr[2];
+                            int maxCount = int.Parse(arr[3]);
+                            int startIndex = int.Parse(arr[4]);
+                            List<User> users = Connect.ReadFromDBUsers(columnName, param, maxCount, startIndex);
+                            if (users.Count > 0)
+                            {
+                                reply = "";
+                                for (int i = 0; i < users.Count; i++)
+                                {
+                                    User user = new User();
+                                    reply += 
+                                        user.Id + " @" +
+                                        user.Name + " @" +
+                                        user.LVL + " @" +
+                                        user.Discount + " @" + "*";
+                                    Console.WriteLine(reply);
+                                }
+                                byte[] msg = Encoding.UTF8.GetBytes(reply);
+                                handler.Send(msg);
+                            }
+                            else
+                            {
+                                byte[] msg = Encoding.UTF8.GetBytes("NOT FOUND");
+                                handler.Send(msg);
+                            }
+                        }
+                        catch
+                        {
+                            reply = "not found";
+                        }
+                    }
+
                     if (!data.Contains("GETIMAGE") && !reply.Contains("USERFROMDB"))
                     {
                         byte[] msg = Encoding.UTF8.GetBytes(reply);
