@@ -166,17 +166,5 @@ namespace ConsoleApp
             }
         }
 
-        private static void NewUser()
-        {
-
-        }
-        private static void GetUser()
-        {
-
-        }
-        private static void GetUsers()
-        {
-
-        }
     }
 }
