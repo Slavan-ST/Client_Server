@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\slava\source\repos\myREPO\Server\APP\obj\Debug\
+C:\Users\slava\source\repos\myREPO\Server\APP\obj\Release\
 APP
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\slava\source\repos\myREPO\Server\APP\App.xaml
 1219584333
 
 7-91369668
-38-1906505327
+381098572291
 MainWindow.xaml;
 
 True
