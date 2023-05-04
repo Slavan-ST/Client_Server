@@ -30,8 +30,7 @@ namespace WpfApp
             InitializeComponent();
 
             NavigationService.GetNavigationService(NavigateFrame);
-            NavigateFrame.Navigate(new PageLogin());
-           // NavigateFrame.Navigate(new PageLoginSearch());
+            NavigateFrame.Navigate(new PageLoginSearch());
             mw = this;
         }
     }

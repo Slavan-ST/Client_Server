@@ -16,6 +16,7 @@ namespace ConsoleApp
         static byte[] bytes = new byte[1024];           //1024 байт
         static byte[] bytesForImage = new byte[1024000];//+- мегабайт
 
+        static User currentUser = null;
         static void Main(string[] args)
         {
             SocketToo();
@@ -36,8 +37,9 @@ namespace ConsoleApp
                 {
                     Socket handler = sListener.Accept();
                     Console.WriteLine("Ожидаем соединение через порт {0}", ipEndPoint);
-
+                    // Программа приостанавливается, ожидая входящее соединение
                     string data = null;
+                    // Мы дождались клиента, пытающегося с нами соединиться
                     int bytesRec = handler.Receive(bytes);
 
 
@@ -72,6 +74,7 @@ namespace ConsoleApp
                             User user = Connect.ReadFromDB(arr[1]);
                             if (user != null)
                             {
+                                currentUser = user;
                                 reply = "USERFROMDB:" + "@" +
                                     user.Id + " @" +
                                     user.Name + " @" +
@@ -165,6 +168,5 @@ namespace ConsoleApp
                 Console.WriteLine(ex.ToString());
             }
         }
-
     }
 }
