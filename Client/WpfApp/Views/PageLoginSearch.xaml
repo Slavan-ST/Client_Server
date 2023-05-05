@@ -25,6 +25,7 @@
                       SelectedIndex="{Binding ComboBoxSelectedIndex, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBox Width="250" Text="{Binding SearchUsersText, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Content="Найти" Width="150" Command="{Binding BtnSearchClick,UpdateSourceTrigger=PropertyChanged }"/>
+            <Button Content="Назад" Width="150" Command="{Binding BtnBackClick,UpdateSourceTrigger=PropertyChanged }"/>
         </StackPanel>
         
         <StackPanel Grid.Column="0" Grid.Row="1">

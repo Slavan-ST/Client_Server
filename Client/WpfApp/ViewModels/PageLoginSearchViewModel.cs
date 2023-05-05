@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WpfApp.Models;
+using WpfApp.Views;
 
 namespace WpfApp.ViewModels
 {
@@ -87,6 +88,7 @@ namespace WpfApp.ViewModels
 
         ICommand _btnSearchClick;
         ICommand _selectItem;
+        ICommand _btnBackClick;
         public ICommand BtnSearchClick
         {
             get
@@ -109,6 +111,17 @@ namespace WpfApp.ViewModels
                 return _selectItem;
             }
         }
+        public ICommand BtnBackClick
+        {
+            get
+            {
+                if (_btnBackClick == null)
+                {
+                    _btnBackClick = new RelayCommand(param => Back());
+                }
+                return _btnBackClick;
+            }
+        }
 
         void SelectItem()
         {
@@ -118,6 +131,10 @@ namespace WpfApp.ViewModels
         void Search()
         {
             UsersSearch = WorkingWithServer.SendMessageGetUsersSearch(ComboBoxItems[ComboBoxSelectedIndex], SearchUsersText);
+        }
+        void Back()
+        {
+            MainWindow.mw.NavigateFrame.Navigate(new PageLogin());
         }
 
     }

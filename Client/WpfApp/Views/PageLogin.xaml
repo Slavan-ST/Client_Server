@@ -9,7 +9,16 @@
       Title="PageLogin">
 
     <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Button Content="Перейти к расширенному поиску" Grid.Column="1" Width="200" HorizontalAlignment="Right" Command="{Binding BtnVarSearchClick,UpdateSourceTrigger=PropertyChanged }"/>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="ID: " Margin="7"/>
                 <TextBox Text="{Binding Path = Id, UpdateSourceTrigger=PropertyChanged}"

@@ -78,6 +78,22 @@ namespace WpfApp.ViewModels
                 return _btnSendClick;
             }
         }
+        public ICommand _btnVarSearchClick;
+        public ICommand BtnVarSearchClick
+        {
+            get
+            {
+                if (_btnVarSearchClick == null)
+                {
+                    _btnVarSearchClick = new RelayCommand(param => this.VarSearch());
+                }
+               return _btnVarSearchClick;
+            }
+        }
+        public void VarSearch()
+        {
+            MainWindow.mw.NavigateFrame.Navigate(new PageLoginSearch());
+        }
 
         public void SendClick()
         {
