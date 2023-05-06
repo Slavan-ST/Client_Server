@@ -24,14 +24,14 @@ namespace WpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Page page;
         static public MainWindow mw;
         public MainWindow()
         {
             InitializeComponent();
-
             NavigationService.GetNavigationService(NavigateFrame);
             //NavigateFrame.Navigate(new PageLoginSearch());
-            NavigateFrame.Navigate(new PageLogin());
+            NavigateFrame.Navigate(page = new PageLogin());
             mw = this;
         }
     }

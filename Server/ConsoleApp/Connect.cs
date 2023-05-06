@@ -22,7 +22,6 @@ namespace APP
         {
             User user = new User();
             string sqlQuery = $"select * from {tableName} where id = '{id}';";
-            Console.WriteLine(id);
             using (NpgsqlConnection npgsqlConnection = new NpgsqlConnection(_conString))
             {
                 npgsqlConnection.Open();
@@ -46,7 +45,8 @@ namespace APP
         public static List<User> ReadFromDBUsers(string columnName, string param, int maxCount, int startIndex = 0)
         {
             List<User> users = new List<User>(); 
-            string sqlQuery = $"select * from {tableName} where {columnName} like '%{param}%';";
+            string sqlQuery = $"select * from {tableName} where CAST({columnName} as text) like '%{param}%';";
+            Console.WriteLine(sqlQuery);
             using (NpgsqlConnection npgsqlConnection = new NpgsqlConnection(_conString))
             {
                 npgsqlConnection.Open();
@@ -58,16 +58,16 @@ namespace APP
                     while (reader.Read())
                     {
                         User user = new User();
-                        user.Id = int.Parse(reader.GetString(0));
-                        Console.WriteLine("Getting");
+                        user.Id = reader.GetInt32(0);
                         user.Name = reader.GetString(1);
                         user.Avatar = reader.GetValue(2) != DBNull.Value ? (byte[])reader.GetValue(2) : null;
-                        user.LVL = reader.GetValue(3) != DBNull.Value ? int.Parse(reader.GetString(3)) : 0;
-                        user.Discount = reader.GetValue(4) != DBNull.Value ? int.Parse(reader.GetString(4)) : 0;
+                        user.LVL = reader.GetValue(3) != DBNull.Value ? reader.GetInt32(3) : 0;
+                        user.Discount = reader.GetValue(4) != DBNull.Value ? reader.GetInt32(4) : 0;
                         users.Add(user);
                     }
                 }
             }
+            Console.WriteLine("Users count:" + users.Count);
             return users;
         }
 

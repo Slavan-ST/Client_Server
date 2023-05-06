@@ -5,7 +5,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="PageLoginSearch">
 
     <Grid>
@@ -17,7 +16,7 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center" 
                     VerticalAlignment="Center" Orientation="Horizontal">
             <ComboBox Width="150" 
@@ -27,24 +26,36 @@
             <Button Content="Найти" Width="150" Command="{Binding BtnSearchClick,UpdateSourceTrigger=PropertyChanged }"/>
             <Button Content="Назад" Width="150" Command="{Binding BtnBackClick,UpdateSourceTrigger=PropertyChanged }"/>
         </StackPanel>
-        
-        <StackPanel Grid.Column="0" Grid.Row="1">
-            <ListView ItemsSource="{Binding Path= UsersSearch, UpdateSourceTrigger=PropertyChanged}">
-                
+
+        <StackPanel Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" Width="{Binding Path= WidthPanel, UpdateSourceTrigger=PropertyChanged}">
+            
+            <StackPanel SizeChanged="Ellement_SizeChanged" Orientation="Horizontal" Margin="5">
+                <TextBlock Margin="5" Text="Id" TextAlignment="Center"/>
+                <TextBlock Margin="5" Text="NickName" TextAlignment="Center"/>
+                <TextBlock Margin="5" Text="LVL" TextAlignment="Center"/>
+                <TextBlock Margin="5" Text="Discount" TextAlignment="Center"/>
+            </StackPanel>
+            
+            <ListView ItemsSource="{Binding Path= UsersSearch, UpdateSourceTrigger=PropertyChanged}"
+                      d:ItemsSource="{d:SampleData ItemCount=5}"
+                      HorizontalContentAlignment="Stretch">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel HorizontalAlignment="Stretch"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                            <TextBlock Text="{Binding Id}"/>
-                            <TextBlock Text="{Binding NickName}"/>
-                            <TextBlock Text="{Binding LVL}"/>
-                            <TextBlock Text="{Binding Discount}"/>
+                        <StackPanel Orientation="Horizontal"
+                            SizeChanged="Ellement_SizeChanged">
+                            <TextBlock Margin="5" Text="{Binding Id}" TextAlignment="Center"/>
+                            <TextBlock Margin="5" Text="{Binding NickName}" TextAlignment="Center"/>
+                            <TextBlock Margin="5" Text="{Binding LVL}" TextAlignment="Center"/>
+                            <TextBlock Margin="5" Text="{Binding Discount}" TextAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <Image/>
         </StackPanel>
     </Grid>
 </Page>

@@ -26,5 +26,25 @@ namespace WpfApp.Views
             InitializeComponent();
             DataContext = new PageLoginSearchViewModel();
         }
+
+        private void Ellement_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+            Panel panel = sender as Panel;
+            int columnCount = panel.Children.Count;
+
+            double pwidth = panel.ActualWidth - panel.Children.Count * ((panel.Children[0] as TextBlock).Margin.Right + (panel.Children[0] as TextBlock).Margin.Left) ;
+
+            for (int i = 0; i < columnCount; i++)
+            {
+                if (panel.Children[i] != null)
+                {
+                    if ((panel.Children[i] as TextBlock).Width != Double.NaN)
+                    {
+                        (panel.Children[i] as TextBlock).Width = pwidth / columnCount;
+                    }
+                }
+            }
+        }
     }
 }

@@ -141,8 +141,7 @@ namespace WpfApp.ViewModels
             System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                Avatar = new BitmapImage(new Uri("/Resources/no-image.png", UriKind.Relative));
-                //Avatar = new BitmapImage(new Uri(openFileDialog.FileName));
+                Avatar = new BitmapImage(new Uri(openFileDialog.FileName));
             }
         }
         public void AddNewUserClick()

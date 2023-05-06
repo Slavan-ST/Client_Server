@@ -4,8 +4,14 @@
              xmlns:local="clr-namespace:WpfApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <Style TargetType="local:MainWindow">
+            <Setter Property="Width" Value="800"/>
+            <Setter Property="Height" Value="450"/>
+        </Style>
         <Style TargetType="Page">
             <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="Width" Value="800"/>
+            <Setter Property="Height" Value="450"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="Background" Value="Aqua"/>

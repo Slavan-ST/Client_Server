@@ -19,7 +19,21 @@ namespace WpfApp.ViewModels
         List<User> _usersSearch;
         int _userSelectedIndex;
         int _comboBoxSelectedIndex;
+        double _widthPanel;
         string _searchUsersText;
+
+        double WidthPanel
+        {
+            get
+            {
+                return _widthPanel;
+            }
+            set
+            {
+                _widthPanel = value;
+                OnPropertyChanged(nameof(WidthPanel));
+            }
+        }
 
         public string SearchUsersText
         {

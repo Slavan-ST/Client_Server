@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="Client" Height="500" Width="600">
+        Title="Client">
     <Grid>
         <Frame Name="NavigateFrame"/>
     </Grid>

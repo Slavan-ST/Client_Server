@@ -64,7 +64,6 @@ namespace ConsoleApp
                         Connect.WriteInDb(user);
                         reply = "success";
                     }
-
                     if (data.Contains("GETUSERID;"))
                     {
                         Console.WriteLine(data);
@@ -97,6 +96,7 @@ namespace ConsoleApp
                                         else
                                         {
                                             handler.Send(Encoding.UTF8.GetBytes("not found"));
+                                            Console.WriteLine("not found2");
                                         }
                                     }
                                     catch { }
@@ -107,6 +107,7 @@ namespace ConsoleApp
                             {
                                 byte[] msg = Encoding.UTF8.GetBytes("NOT FOUND");
                                 handler.Send(msg);
+                                Console.WriteLine("not found");
                             }
                         }
                         catch
@@ -130,7 +131,7 @@ namespace ConsoleApp
                                 reply = "";
                                 for (int i = 0; i < users.Count; i++)
                                 {
-                                    User user = new User();
+                                    User user = users[i];
                                     reply += 
                                         user.Id + " @" +
                                         user.Name + " @" +

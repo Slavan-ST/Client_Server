@@ -147,3 +147,4 @@ C:\Users\Expert\Downloads\myRepo2\Client\WpfApp\obj\Debug\WpfApp.csproj.Generate
 C:\Users\Expert\Downloads\myRepo2\Client\WpfApp\obj\Debug\WpfApp.csproj.CoreCompileInputs.cache
 C:\Users\Expert\Downloads\myRepo2\Client\WpfApp\obj\Debug\WpfApp.exe
 C:\Users\Expert\Downloads\myRepo2\Client\WpfApp\obj\Debug\WpfApp.pdb
+C:\Users\slava\source\repos\myREPO\Client\WpfApp\obj\Debug\GeneratedInternalTypeHelper.g.cs
